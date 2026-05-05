@@ -29,7 +29,7 @@ tweet_chain = tweet_prompt | gemini_model
 response = tweet_chain.invoke({"number" : 5, "topic" : "wars in Middle East"})
 
 import streamlit as st
-st.header("tweet generator")
+st.header("Tweet generator")
 st.subheader("Generate tweets using Generative AI")
 topic = st.text_input("Topic")
 number = st.number_input("Number of tweets", min_value = 1, max_value = 10, value = 1, step = 1)
