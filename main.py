@@ -32,32 +32,33 @@ tweet_chain = tweet_prompt | gemini_model
 
 #UI Logic
 topic = st.text_input("Topic", placeholder="Enter a topic...")
-number = st.number_input("Number of tweets", min_value = 1, max_value = 10, value = 1)
+number = st.number_input(
+    "Number of tweets",
+    min_value=1,
+    max_value=10,
+    value=1
+)
+
 if st.button("Generate"):
     if topic.strip():
         with st.spinner("Generating tweets..."):
             try:
-                # This only runs when the button is clicked
+                # LLM invocation
                 response = tweet_chain.invoke({
                     "number": number,
-                    "topics": topic   # Corrected 'topic' to 'topics'
+                    "topics": topic   # fixed typo: topics
                 })
 
-                # Attempt to parse as JSON for formatted display, else write content
-                try:
-                    import json
-                    parsed_content = json.loads(response.content)
-                    st.json(parsed_content) # Display as formatted JSON
-                except json.JSONDecodeError:
-                    st.write(response.content) # Display as plain text
+                # Show formatted output instead of raw JSON
+                st.markdown(response.content)
 
             except Exception as e:
                 st.error(f"AI Error: {e}")
 
-    # The 'else' block indentation is logically correct as provided.
-    # It handles the case where 'topic' is empty after the 'Generate' button is clicked.
     else:
+        # Fixed indentation of else block
         st.warning("Please enter a topic first")
+
 
 
 
