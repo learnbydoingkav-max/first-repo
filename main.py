@@ -17,7 +17,7 @@ GOOGLE_API_KEY
 api_key = st.secrets.get("GOOGLE_API_KEY")
 
 if not api_key:
-    st.error("Please ass GOOGLE_API_KEY to your Streamlit Secrets."
+    st.error("Please ass GOOGLE_API_KEY to your Streamlit Secrets.")
              st.stop()
 
 # Initialize model and chain
