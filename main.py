@@ -25,7 +25,7 @@ if not api_key:
 gemini_model = ChatGoogleGenerativeAI(model="gemini-3.1-flash-lite-preview", google_api_key=api_key)
 
 #create promt template for generating tweets
-tweet_template = "Give me {number} tweets on {topic}"
+tweet_template = "Give me {number} tweets on {topic}. Format each tweet as a bullet point."
 tweet_prompt = PromptTemplate.from_template(tweet_template)
 #Create LLM chain using the promt template and model
 tweet_chain = tweet_prompt | gemini_model
@@ -43,25 +43,25 @@ if st.button("Generate"):
     if topic.strip():
         with st.spinner("Generating tweets..."):
             try:
-                # LLM invocation
                 response = tweet_chain.invoke({
                     "number": number,
-                    "topic": topic   # fixed typo: topics
+                    "topic": topic
                 })
 
-                # Show formatted output instead of raw JSON
-                st.markdown(response.content)
+                # Clean up and ensure bullet point formatting
+                content = response.content
+                lines = content.strip().split("\n")
+                bullet_points = "\n".join(
+                    f"- {line.strip().lstrip('-•*').strip()}"
+                    for line in lines
+                    if line.strip()
+                )
+                st.markdown(bullet_points)
 
             except Exception as e:
                 st.error(f"AI Error: {e}")
-
     else:
-        # Fixed indentation of else block
         st.warning("Please enter a topic first")
-
-
-
-
 
 
 
