@@ -48,8 +48,16 @@ if st.button("Generate"):
                     "topic": topic
                 })
 
-                # Clean up and ensure bullet point formatting
+                # Handle both string and list response types
                 content = response.content
+                if isinstance(content, list):
+                    # Extract text from list of content blocks
+                    content = "\n".join(
+                        block["text"] if isinstance(block, dict) else str(block)
+                        for block in content
+                    )
+
+                # Clean up and ensure bullet point formatting
                 lines = content.strip().split("\n")
                 bullet_points = "\n".join(
                     f"- {line.strip().lstrip('-•*').strip()}"
