@@ -18,7 +18,7 @@ api_key = st.secrets.get("GOOGLE_API_KEY")
 
 if not api_key:
     st.error("Please ass GOOGLE_API_KEY to your Streamlit Secrets.")
-             st.stop()
+    st.stop()
 
 # Initialize model and chain
 # Note: Ensure "gemini-3.1-flash-lite-preview" is available in your region
