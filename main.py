@@ -65,15 +65,5 @@ if st.button("Generate"):
 
 
 
-
-
-
-
-
-
-
-
-
-
-    response = tweet_chain.invoke({"number": number, "topic": topic})
+ #response = tweet_chain.invoke({"number": number, "topic": topic})
     
