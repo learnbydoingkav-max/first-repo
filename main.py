@@ -12,8 +12,8 @@ st.set_page_config(page_title="Tweet Generator")
 st.header("Tweet generator")
 st.subheader("Generate tweets using Generative AI")
                    
-#Secret key name:
-GOOGLE_API_KEY api_key = st.secrets.get("GOOGLE_API_KEY")
+#Secret key name: GOOGLE_API_KEY
+api_key = st.secrets.get("GOOGLE_API_KEY")
 
 if not api_key:
     st.error("Please ass GOOGLE_API_KEY to your Streamlit Secrets.")
