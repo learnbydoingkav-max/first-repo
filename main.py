@@ -36,8 +36,7 @@ topic = st.text_input("Topic", placeholder="Enter a topic...")
 number = st.number_input("Number of tweets", min_value = 1, max_value = 10, value = 1)
 if st.button("Generate"):
   if topic:
-    with
-    st.spinner("Generating tweets..."):
+    with st.spinner("Generating tweets..."):
       try:
         # This only runs when the button is clicked
        response = tweet_chain.invoke({"number" : number, "topic" : "topic"})
