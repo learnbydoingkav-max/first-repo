@@ -40,14 +40,22 @@ if st.button("Generate"):
                 # This only runs when the button is clicked
                 response = tweet_chain.invoke({
                     "number": number,
-                    "topic": topic   # remove quotes around topic
+                    "topics": topic   # Corrected 'topic' to 'topics'
                 })
 
-                st.write(response.content)
+                # Attempt to parse as JSON for formatted display, else write content
+                try:
+                    import json
+                    parsed_content = json.loads(response.content)
+                    st.json(parsed_content) # Display as formatted JSON
+                except json.JSONDecodeError:
+                    st.write(response.content) # Display as plain text
 
             except Exception as e:
                 st.error(f"AI Error: {e}")
 
+    # The 'else' block indentation is logically correct as provided.
+    # It handles the case where 'topic' is empty after the 'Generate' button is clicked.
     else:
         st.warning("Please enter a topic first")
 
