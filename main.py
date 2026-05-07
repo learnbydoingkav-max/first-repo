@@ -40,7 +40,7 @@ if st.button("Generate"):
       try:
         # This only runs when the button is clicked
        response = tweet_chain.invoke({"number" : number, "topic" : "topic"})
-        st.write(response.content)
+       st.write(response.content)
       except Exception as e:
         st.error(f"AI Error: {e}")
       else:
