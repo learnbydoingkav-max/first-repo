@@ -46,7 +46,7 @@ if st.button("Generate"):
                 # LLM invocation
                 response = tweet_chain.invoke({
                     "number": number,
-                    "topics": topic   # fixed typo: topics
+                    "topic": topic   # fixed typo: topics
                 })
 
                 # Show formatted output instead of raw JSON
